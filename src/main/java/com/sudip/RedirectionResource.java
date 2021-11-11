@@ -18,7 +18,7 @@ public class RedirectionResource {
     public Response doRedirect(
             @PathParam("key") String key
     ) {
-        String destinationUrl = null;
+        String destinationUrl;
         switch (key.toLowerCase()) {
             case "google":
                 destinationUrl = "http://www.google.com";
@@ -29,13 +29,15 @@ public class RedirectionResource {
             case "apple":
                 destinationUrl = "http://www.apple.com";
                 break;
+            case "netflix":
+                destinationUrl = "http://www.netflix.com";
+                break;
             default:
                 destinationUrl = "http://localhost:8080/error?key=" + key;
                 break;
         }
         URI uri = URI.create(destinationUrl);
-        Response response = Response.seeOther(uri).build();
-        return response;
+        return Response.seeOther(uri).build();
     }
 
 }
